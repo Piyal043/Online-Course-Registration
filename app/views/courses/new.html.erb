@@ -1,0 +1,28 @@
+<h1>Create a course</h1>
+
+<%= form_for @course do |f| %>
+  <form>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Course No.</label>
+      <input type="Text" class="form-control"  placeholder="Course No.">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Course Title</label>
+      <input type="Text" class="form-control"  placeholder="Course Title">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Credit</label>
+      <input type="Number" class="form-control"  placeholder="Credit">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Semester</label>
+      <select class="form-control" id="exampleFormControlSelect1">
+        <option>1st</option>
+        <option>2nd</option>
+        <option>3rd</option>
+        <option>4th</option>
+        <option>5th</option>
+      </select>
+    </div>
+  </form>
+<% end %>
