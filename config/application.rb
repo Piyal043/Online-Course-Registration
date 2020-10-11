@@ -2,9 +2,7 @@ require_relative 'boot'
 
 require 'rails/all'
 
-require "active_storage/engine"
-
-
+require 'active_storage/engine'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -21,4 +19,3 @@ module OnlineRegistration
     # the framework and any gems in your application.
   end
 end
-

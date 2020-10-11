@@ -1,5 +1,6 @@
+# Semester controller
 class SemestersController < ApplicationController
-  before_action :set_semester, only: [:edit, :update, :show, :destroy]
+  before_action :set_semester, only: %i[edit update show destroy]
   before_action :require_admin, except: [:index]
   def index
     @semesters = Semester.all
@@ -12,24 +13,20 @@ class SemestersController < ApplicationController
   def create
     @semester = Semester.new(semester_params)
     if @semester.save
-      flash[:notice] = "Semester was created successfully"
+      flash[:notice] = 'Semester was created successfully'
       redirect_to semester_path(@semester)
     else
       render 'new'
     end
   end
 
-  def edit
+  def edit; end
 
-  end
-
-  def show
-
-  end
+  def show; end
 
   def update
     if @semester.update(semester_params)
-      flash[:notice] = "Article was successfully updated"
+      flash[:notice] = 'Semester was successfully updated'
       redirect_to semester_path(@semester)
     else
       render 'edit'
@@ -38,23 +35,24 @@ class SemestersController < ApplicationController
 
   def destroy
     @semester.destroy
-    flash[:notice] = "Semester was deleted successfully"
+    flash[:notice] = 'Semester was deleted successfully'
     redirect_to semesters_path
   end
 
   private
+
   def set_semester
     @semester = Semester.find(params[:id])
   end
+
   def semester_params
     params.require(:semester).permit(:name)
   end
 
   def require_admin
-    if logged_in? and !current_user.admin?
-      flash[:danger] = "Only admin can perform this action"
+    if logged_in? && !current_user.admin?
+      flash[:danger] = 'Only admin can perform this action'
       redirect_to root_path
     end
   end
-
 end

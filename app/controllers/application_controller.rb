@@ -1,5 +1,5 @@
+# Application Controller
 class ApplicationController < ActionController::Base
-
   before_action :authenticate_user!
 
   helper_method :logged_in?
@@ -8,10 +8,9 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    if !logged_in?
-      flash[:danger] = "You must be logged in to perform this action"
+    unless logged_in?
+      flash[:danger] = 'You must be logged in to perform this action'
       redirect_to root_path
     end
   end
-
 end
