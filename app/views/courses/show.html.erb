@@ -1,0 +1,17 @@
+<div class="list-group">
+  <li class="list-group-item text-lg-center bg-dark text-light"><h4>Course View</h4></li>
+  <li class="list-group-item">Course Number: <%= @course.number %></li>
+  <li class="list-group-item">Course Title: <%= @course.title %></li>
+  <li class="list-group-item">Course Credit: <%= @course.credit %></li>
+  <li class="list-group-item">Semester Name: <%= @course.semester_id %></li>
+  <li class="list-group-item">
+    <div class="btn btn-primary"><%= link_to "Edit course", edit_course_path(@course),
+                                                        class: "text-light" %>
+    </div>
+    <div class="btn btn-primary "><%= link_to "Back to course list", courses_path,
+                                                          class: "text-light" %>
+    </div>
+  </li>
+</div>
+
+

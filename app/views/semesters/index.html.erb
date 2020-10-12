@@ -1,17 +1,36 @@
-<h1>All Semesters</h1>
-<%= link_to "Create new semester", new_semester_path %>
-<table>
-  <tr>
-    <th>Semester Name</th>
-  </tr>
+<div class="card">
+  <div class="card-header text-lg-center">
+    <h3>All Semesters</h3>
+  </div>
 
-  <% @semesters.each do |semester| %>
-    <tr>
-      <td>[<%= semester.id %>]</td>
-      <td><%= semester.name %></td>
-      <td><%= link_to 'Edit', edit_semester_path(semester) %></td>
-      <td><%= link_to 'Show', semester_path(semester) %></td>
-      <td><%= link_to 'Delete', semester_path(semester), method: :delete, data: {confirm: "Are you sure?"} %></td>
-    </tr>
-  <% end %>
-</table>
+  <div class="card-body same-width">
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item list-group-item-primary">Semester ID</li>
+      <li class="list-group-item list-group-item-primary">Semester Name</li>
+      <li class="list-group-item list-group-item-primary">Status</li>
+      <li class="list-group-item list-group-item-primary">Actions</li>
+    </ul>
+    <% @semesters.each do |semester| %>
+      <ul class="list-group list-group-horizontal">
+        <li class="list-group-item list-group-item-secondary">[<%= semester.id %>]</li>
+        <li class="list-group-item list-group-item-secondary"><%= semester.name %></li>
+        <% if semester.status %>
+          <li class="list-group-item list-group-item-secondary bg-success">Active</li>
+        <% else %>
+          <li class="list-group-item list-group-item-secondary bg-danger">Not Active</li>
+        <% end %>
+        <li class="list-group-item list-group-item-secondary"><%= link_to 'Show', semester_path(semester) %></li>
+        <li class="list-group-item list-group-item-secondary"><%= link_to 'Edit', edit_semester_path(semester) %></li>
+        <li class="list-group-item list-group-item-secondary"><%= link_to 'Delete', semester_path(semester),
+                                          method: :delete, data: {confirm: "Are you sure?"} %></li>
+      </ul>
+    <% end %>
+  </div>
+
+  <div align="center">
+    <%= link_to "Create new semester", new_semester_path, class: "btn btn-primary" %>
+  </div>
+</div>
+
+
+

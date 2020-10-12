@@ -1,16 +1,15 @@
 <div class="card">
   <div class="card-header text-lg-center">
-    <h3>View Semester Details</h3>
+    <h3>All Courses</h3>
   </div>
-
   <div class="card-body same-width">
-    <h5 class="list-group-item list-group-item-info card-title text-center"><%= @semester.name %></h5>
-    <% if @courses.any? %>
     <ul class="list-group list-group-horizontal">
       <li class="list-group-item list-group-item-primary">Course ID</li>
       <li class="list-group-item list-group-item-primary">Course Number</li>
       <li class="list-group-item list-group-item-primary">Course Title</li>
       <li class="list-group-item list-group-item-primary">Course Credit</li>
+      <li class="list-group-item list-group-item-primary">Semester ID</li>
+      <li class="list-group-item list-group-item-primary">Actions</li>
     </ul>
 
     <% @courses.each do |course| %>
@@ -19,13 +18,20 @@
         <li class="list-group-item list-group-item-secondary"><%= course.number %></li>
         <li class="list-group-item list-group-item-secondary"><%= course.title %></li>
         <li class="list-group-item list-group-item-secondary"><%= course.credit %></li>
+        <li class="list-group-item list-group-item-secondary"><%= course.semester.name %></li>
+        <li class="list-group-item list-group-item-secondary"><%= link_to 'Show', course_path(course) %></li>
+        <li class="list-group-item list-group-item-secondary"><%= link_to 'Edit', edit_course_path(course) %></li>
+        <li class="list-group-item list-group-item-secondary"><%= link_to 'Delete', course_path(course),
+                                                method: :delete, data: {confirm: "Are you sure?"} %></li>
       </ul>
     <% end %>
-      <% end %>
+
+  </div>
+
+  <div align="center">
+    <%= link_to "Create new Course", new_course_path, class: "btn btn-primary" %>
   </div>
 </div>
 
 
-<%= link_to "Edit semester name", edit_semester_path(@semester), class: "btn btn-primary" %>
 
-<%= link_to "Back to semester list", semesters_path, class: "btn btn-primary"%>
