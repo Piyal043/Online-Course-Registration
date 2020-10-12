@@ -1,25 +1,37 @@
-<h1>All Courses</h1>
-<%= link_to "Create new Courses", new_course_path %>
-<table>
-  <tr>
-    <th>Course ID</th>
-    <th>Course Number</th>
-    <th>Course Title</th>
-    <th>Course Credit</th>
-    <th>Semester ID</th>
-    <th>Functionality</th>
-  </tr>
+<div class="card">
+  <div class="card-header text-lg-center">
+    <h3>All Courses</h3>
+  </div>
+  <div class="card-body same-width">
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item list-group-item-primary">Course ID</li>
+      <li class="list-group-item list-group-item-primary">Course Number</li>
+      <li class="list-group-item list-group-item-primary">Course Title</li>
+      <li class="list-group-item list-group-item-primary">Course Credit</li>
+      <li class="list-group-item list-group-item-primary">Semester ID</li>
+      <li class="list-group-item list-group-item-primary">Actions</li>
+    </ul>
 
-  <% @courses.each do |course| %>
-    <tr>
-      <td>[<%= course.id %>]</td>
-      <td><%= course.number %></td>
-      <td><%= course.title %></td>
-      <td><%= course.credit %></td>
-      <td><%= course.semester_id %></td>
-      <td><%= link_to 'Edit', edit_course_path(course) %></td>
-      <td><%= link_to 'Show', course_path(course) %></td>
-      <td><%= link_to 'Delete', course_path(course), method: :delete, data: {confirm: "Are you sure?"} %></td>
-    </tr>
-  <% end %>
-</table>
+    <% @courses.each do |course| %>
+      <ul class="list-group list-group-horizontal">
+        <li class="list-group-item list-group-item-secondary">[<%= course.id %>]</li>
+        <li class="list-group-item list-group-item-secondary"><%= course.number %></li>
+        <li class="list-group-item list-group-item-secondary"><%= course.title %></li>
+        <li class="list-group-item list-group-item-secondary"><%= course.credit %></li>
+        <li class="list-group-item list-group-item-secondary"><%= course.semester.name %></li>
+        <li class="list-group-item list-group-item-secondary"><%= link_to 'Show', course_path(course) %></li>
+        <li class="list-group-item list-group-item-secondary"><%= link_to 'Edit', edit_course_path(course) %></li>
+        <li class="list-group-item list-group-item-secondary"><%= link_to 'Delete', course_path(course),
+                                                method: :delete, data: {confirm: "Are you sure?"} %></li>
+      </ul>
+    <% end %>
+
+  </div>
+
+  <div align="center">
+    <%= link_to "Create new Course", new_course_path, class: "btn btn-primary" %>
+  </div>
+</div>
+
+
+

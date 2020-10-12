@@ -12,6 +12,11 @@ class SemestersController < ApplicationController
 
   def create
     @semester = Semester.new(semester_params)
+    if params.require(:semester)[:status] == "true"
+      @active_semester= Semester.find_by_status(true)
+      @active_semester.status = false
+      @active_semester.save
+    end
     if @semester.save
       flash[:notice] = 'Semester was created successfully'
       redirect_to semester_path(@semester)
@@ -22,9 +27,16 @@ class SemestersController < ApplicationController
 
   def edit; end
 
-  def show; end
+  def show
+    @courses = @semester.courses
+  end
 
   def update
+    if params.require(:semester)[:status] == "true"
+      @active_semester= Semester.find_by_status(true)
+      @active_semester.status = false
+      @active_semester.save
+    end
     if @semester.update(semester_params)
       flash[:notice] = 'Semester was successfully updated'
       redirect_to semester_path(@semester)
@@ -46,7 +58,7 @@ class SemestersController < ApplicationController
   end
 
   def semester_params
-    params.require(:semester).permit(:name)
+    params.require(:semester).permit(:name, :status)
   end
 
   def require_admin

@@ -1,7 +1,31 @@
-<h1>Showing Semester</h1>
+<div class="card">
+  <div class="card-header text-lg-center">
+    <h3>View Semester Details</h3>
+  </div>
 
-<p>Semester Name: <%= @semester.name %></p>
+  <div class="card-body same-width">
+    <h5 class="list-group-item list-group-item-info card-title text-center"><%= @semester.name %></h5>
+    <% if @courses.any? %>
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item list-group-item-primary">Course ID</li>
+      <li class="list-group-item list-group-item-primary">Course Number</li>
+      <li class="list-group-item list-group-item-primary">Course Title</li>
+      <li class="list-group-item list-group-item-primary">Course Credit</li>
+    </ul>
 
-<%= link_to "Edit semester name", edit_semester_path(@semester) %> |
+    <% @courses.each do |course| %>
+      <ul class="list-group list-group-horizontal">
+        <li class="list-group-item list-group-item-secondary">[<%= course.id %>]</li>
+        <li class="list-group-item list-group-item-secondary"><%= course.number %></li>
+        <li class="list-group-item list-group-item-secondary"><%= course.title %></li>
+        <li class="list-group-item list-group-item-secondary"><%= course.credit %></li>
+      </ul>
+    <% end %>
+      <% end %>
+  </div>
+</div>
 
-<%= link_to "Back to semester list", semesters_path %>
+
+<%= link_to "Edit semester name", edit_semester_path(@semester), class: "btn btn-primary" %>
+
+<%= link_to "Back to semester list", semesters_path, class: "btn btn-primary"%>
