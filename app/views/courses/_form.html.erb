@@ -1,0 +1,30 @@
+<div class="card-body">
+  <%= form_for @course do |f| %>
+
+    <div class="form-group">
+      <%= f.label :Course_Number %>
+      <%= f.text_field :number, autofocus: true, autocomplete: 'Course Number', class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :Course_Title %>
+      <%= f.text_field :title,  class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :Credit %>
+      <%= f.number_field :credit, autocomplete: 'credit', class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :Semester %>
+      <%= f.collection_select :semester_id, Semester.all, :id, :name, {prompt: "Select a semester"},
+                              {class: "form-control"} %>
+    </div>
+
+    <div class="form-group ">
+      <%= f.submit class: 'btn btn-primary'  %>
+    </div>
+  <% end %>
+
+</div>

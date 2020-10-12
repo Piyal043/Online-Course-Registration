@@ -8,25 +8,34 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-link nav-item text-dark"><%= link_to "Home", root_path %></li>
       <% if logged_in? %>
-        <li class="nav-link nav-item"><%= link_to "Profile", edit_registration_path(current_user)  %></li>
+        <li class="nav-link nav-item"><%= link_to "Profile",
+                         edit_registration_path(current_user)  %></li>
       <% end %>
       <% if logged_in? and current_user.admin? %>
-        <li class="nav-link nav-item"><%= link_to "Create Semester", new_semester_path  %></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+             role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Create
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item "><%= link_to "Create Semester",  new_semester_path %></a>
+            <a class="dropdown-item "><%= link_to "Create Course", new_course_path %></a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+             role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Inspect
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item "><%= link_to "Semesters",  semesters_path %></a>
+            <a class="dropdown-item "><%= link_to "Courses", courses_path %></a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
       <% end %>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -48,6 +57,7 @@
                       method: :delete) %>
         </li>
       </ul>
+
 
     <% else %>
 
