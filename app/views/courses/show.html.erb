@@ -1,0 +1,13 @@
+<h1>Showing Course</h1>
+
+<p>Course Number: <%= @course.number %></p>
+
+<p>Course Title: <%= @course.title %></p>
+
+<p>Course Credit: <%= @course.credit %></p>
+
+<p>Semester Name: <%= @course.semester_id %></p>
+
+<%= link_to "Edit course", edit_course_path(@course) %> |
+
+<%= link_to "Back to course list", courses_path %>
