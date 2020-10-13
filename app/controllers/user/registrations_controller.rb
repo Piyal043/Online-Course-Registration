@@ -1,11 +1,11 @@
+# Registration Controller
 class User::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
-
 
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys:[:first_name, :last_name, :roll])
-    devise_parameter_sanitizer.permit(:account_update, keys:[:first_name,:last_name, :roll])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name roll avatar])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name roll avatar])
   end
 end
